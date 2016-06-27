@@ -1,3 +1,5 @@
+import Base.Callable
+
 export ∘
 
-∘(f::Function, g::Function) = x->f(g(x))
+∘(f::Callable, g::Callable) = x->f(g(x))
