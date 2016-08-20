@@ -4,13 +4,10 @@ module OhMyJulia
 
 include("abbr.jl")
 include("currying.jl")
+include("foreign.jl")
 include("fs.jl")
 include("io.jl")
-include("lisp.jl")
 include("list.jl")
-include("ocaml.jl")
 include("operator.jl")
-include("r.jl")
-include("suger.jl")
 
 end

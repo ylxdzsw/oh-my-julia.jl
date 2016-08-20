@@ -8,18 +8,18 @@ map!(f::Function, g::Function, x) = map!(f∘g, x)
 Δ(f::Function, x::Vector) = [f(x[i+1],x[i]) for i in 1:length(x)-1]
 Δ{T}(f::Function, ::Type{T}, x::Vector) = T[f(x[i+1],x[i]) for i in 1:length(x)-1]
 
-function min(x...; key=identity, lt=<)
+function min(x...; by=identity, lt=<)
     length(x) == 0 ? throw(ArgumentError("min() needs at least one argument")) :
     length(x) == 1 ? car(x) :
     reduce(x) do a,b
-        lt(key(a), key(b)) ? a : b
+        lt(by(a), by(b)) ? a : b
     end
 end
 
-function max(x...; key=identity, lt=<)
+function max(x...; by=identity, lt=<)
     length(x) == 0 ? throw(ArgumentError("max() needs at least one argument")) :
     length(x) == 1 ? car(x) :
     reduce(x) do a,b
-        lt(key(a), key(b)) ? b : a
+        lt(by(a), by(b)) ? b : a
     end
 end
