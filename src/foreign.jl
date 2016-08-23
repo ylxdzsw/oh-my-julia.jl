@@ -1,11 +1,11 @@
 export car, cdr, cadr,
        nrow, ncol, void
 
-car(x::Tuple) = x[1]
-cdr(x::Tuple) = x[2:end]
-cadr(x::Tuple) = x[2]
+@inline car(x::ANY)  = x[1]
+@inline cdr(x::ANY)  = x[2:end]
+@inline cadr(x::ANY) = x[2]
 
-nrow = x->size(x,1)
-ncol = x->size(x,2)
+@inline nrow(x::ANY) = size(x,1)
+@inline ncol(x::ANY) = size(x,2)
 
-void(x::ANY...) = nothing
+@inline void(x::ANY...) = nothing
