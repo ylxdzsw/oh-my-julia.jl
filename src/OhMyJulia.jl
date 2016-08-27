@@ -8,6 +8,7 @@ include("foreign.jl")
 include("fs.jl")
 include("io.jl")
 include("list.jl")
+include("macro.jl")
 include("operator.jl")
 
 end
