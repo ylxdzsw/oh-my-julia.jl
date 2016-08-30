@@ -10,5 +10,6 @@ include("io.jl")
 include("list.jl")
 include("macro.jl")
 include("operator.jl")
+include("other.jl")
 
 end
