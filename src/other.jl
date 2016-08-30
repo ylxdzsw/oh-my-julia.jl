@@ -1,6 +1,6 @@
 export to_module
 
-function to_module(d::Dict)
+function to_module(d::Associative)
     m = Module(:__anon__, false)
     exprs = (Expr(:const, Expr(:(=), Symbol(k), v)) for (k,v) in d)
     eval(m, Expr(:toplevel, exprs...))
