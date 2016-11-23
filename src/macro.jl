@@ -1,4 +1,4 @@
-export @~, @i_str
+export @~, @i_str, @with
 
 function curring_call_trans(acc, rest)
     isempty(rest) && return acc
@@ -32,4 +32,22 @@ macro i_str(ind)
     ex = parse("x[$ind]")
     ex.args[2] = esc(ex.args[2])
     Expr(:->, :x, ex)
+end
+
+"""
+a = @with Dict{Int, Int}() do x
+    x[2] = 3
+end
+"""
+macro with(exp)
+    a = shift!(exp.args)
+    b = shift!(exp.args)
+    unshift!(exp.args, a)
+
+    quote
+        let $(b.args[1].args[1]) = $exp
+            $(b.args[2])
+            $(b.args[1].args[1])
+        end
+    end
 end
