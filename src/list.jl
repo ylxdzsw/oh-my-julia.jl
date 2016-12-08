@@ -1,5 +1,5 @@
 import Base: map, map!, min, max
-export Δ, groupby
+export Δ, groupby, level_to_edge
 
 map(f::Base.Callable, g::Base.Callable, x) = map(f, map(g, x))
 map!(f::Base.Callable, g::Base.Callable, x) = map!(f, map(g, x))
@@ -61,6 +61,22 @@ function groupby(f, op, itr)
             result[key] = op(result[key], i)
         else
             result[key] = i
+        end
+    end
+
+    result
+end
+
+function level_to_edge(arr)
+    result = Tuple{Int, eltype(arr)}[]
+    isempty(arr) && return result
+    state = arr[1]
+    push!(result, (1, state))
+
+    for (i, v) in enumerate(arr)
+        if state != v
+            state = v
+            push!(result, (i, v))
         end
     end
 
