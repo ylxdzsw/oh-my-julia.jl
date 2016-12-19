@@ -1,4 +1,4 @@
-export @~, @i_str, @with
+export @~, @i_str, @with, @when
 
 function curring_call_trans(acc, rest)
     isempty(rest) && return acc
@@ -50,4 +50,8 @@ macro with(exp)
             $(b.args[1].args[1])
         end
     end
+end
+
+macro when(exp)
+    :( !$(esc(exp)) && continue )
 end
