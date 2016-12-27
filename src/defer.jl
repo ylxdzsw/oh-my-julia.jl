@@ -17,7 +17,7 @@ macro force(ex)
 end
 
 function fetch(thunk::Thunk)
-    while isa(thunk, Thunk) # the one and only loop
+    while isa(thunk, Thunk)
         thunk = thunk()
     end
     thunk

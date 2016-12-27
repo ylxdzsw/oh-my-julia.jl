@@ -4,7 +4,7 @@ Oh-My-Julia
 ### installation
 
 ```
-Pkg.clone("git@github.com:ylxdzsw/oh-my-julia.jl.git","OhMyJulia")
+Pkg.clone("https://github.com/ylxdzsw/oh-my-julia.jl","OhMyJulia")
 ```
 
 You can put following code into your `~/.juliarc.jl` to have it load automatically.
