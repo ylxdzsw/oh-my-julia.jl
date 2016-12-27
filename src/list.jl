@@ -1,4 +1,4 @@
-import Base: map, map!, min, max
+import Base: map, map!, min, max, conv
 export Δ, groupby, level_to_edge
 
 map(f::Base.Callable, g::Base.Callable, x) = map(f, map(g, x))
@@ -81,4 +81,13 @@ function level_to_edge(arr)
     end
 
     result
+end
+
+function conv(f::Function, A::Vector; kernel::Int=2, stride::Int=1, ret_t::Type=Any)
+    A′ = Vector{ret_t}((length(A)-kernel)÷stride+1)
+    for i in eachindex(A′)
+        offset = (i - 1) * stride
+        A′[i]  = f(A[offset+1:offset+kernel]...)
+    end
+    A′
 end
