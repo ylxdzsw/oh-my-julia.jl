@@ -20,7 +20,7 @@ prt(io::IO, xs...) = begin
         print(io, car(xs))
         for x in cdr(xs)
             print(io, '\t')
-            print(Io, x)
+            print(io, x)
         end
         print(io, '\n')
     finally
