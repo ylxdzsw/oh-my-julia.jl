@@ -13,7 +13,7 @@ import Base: <<, >>, >>>
 
 export prt
 
-prt(xs...) = prt(STDOUT, xs)
+prt(xs...) = prt(STDOUT, xs...)
 prt(io::IO, xs...) = begin
     lock(io)
     try
