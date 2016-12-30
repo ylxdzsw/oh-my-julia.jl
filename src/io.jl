@@ -11,6 +11,8 @@ import Base: <<, >>, >>>
 >>>(x::IO, y) = (read(x, y); x)
 >>>(x::IO, f::Function) = (f(x); x)
 
+export prt
+
 prt(xs...) = prt(STDOUT, xs)
 prt(io::IO, xs...) = begin
     lock(io)
