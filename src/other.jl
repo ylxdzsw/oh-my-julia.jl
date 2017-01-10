@@ -1,4 +1,4 @@
-export to_module
+export to_module, counter
 
 function to_module(d::Associative)
     m = Module(:__anon__, false)
@@ -6,3 +6,5 @@ function to_module(d::Associative)
     eval(m, Expr(:toplevel, exprs...))
     m
 end
+
+const counter = ((c) -> () -> println(c += 1))(0)

@@ -67,6 +67,8 @@ function groupby(f, op, itr)
     result
 end
 
+groupby(f, itr) = groupby(f, push!, ()->[], itr)
+
 function level_to_edge(arr)
     result = Tuple{Int, eltype(arr)}[]
     isempty(arr) && return result
