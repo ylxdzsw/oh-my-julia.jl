@@ -24,47 +24,41 @@ function max(x...; by=identity, lt=<)
     end
 end
 
-function groupby(f, op, v0, itr)
+function groupby(f, op, v0, itr; dict=Dict())
     @assert isimmutable(v0) "v0 is mutable, use lambda instead"
 
-    result = Dict()
-
     for i in itr
         key = f(i)
-        result[key] = op(get(result, key, v0), i)
+        dict[key] = op(get(dict, key, v0), i)
     end
 
-    result
+    dict
 end
 
-function groupby(f, op, v0::Function, itr)
-    result = Dict()
-
+function groupby(f, op, v0::Function, itr; dict=Dict())
     for i in itr
         key = f(i)
-        if key in keys(result)
-            result[key] = op(result[key], i)
+        if key in keys(dict)
+            dict[key] = op(dict[key], i)
         else
-            result[key] = op(v0(), i)
+            dict[key] = op(v0(), i)
         end
     end
 
-    result
+    dict
 end
 
-function groupby(f, op, itr)
-    result = Dict()
-
+function groupby(f, op, itr; dict=Dict())
     for i in itr
         key = f(i)
-        if key in keys(result)
-            result[key] = op(result[key], i)
+        if key in keys(dict)
+            dict[key] = op(dict[key], i)
         else
-            result[key] = i
+            dict[key] = i
         end
     end
 
-    result
+    dict
 end
 
 groupby(f, itr) = groupby(f, push!, ()->[], itr)
