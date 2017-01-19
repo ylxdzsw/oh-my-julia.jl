@@ -35,7 +35,7 @@ function groupby(f, op, v0, itr; dict=Dict())
     dict
 end
 
-function groupby(f, op, v0::Function, itr; dict=Dict())
+function groupby(f, op, v0::Base.Callable, itr; dict=Dict())
     for i in itr
         key = f(i)
         if key in keys(dict)
