@@ -44,12 +44,12 @@ macro with(exp)
     b = shift!(exp.args)
     unshift!(exp.args, a)
 
-    quote
+    esc(quote
         let $(b.args[1].args[1]) = $exp
             $(b.args[2])
             $(b.args[1].args[1])
         end
-    end
+    end)
 end
 
 macro when(exp)
