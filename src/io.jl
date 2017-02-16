@@ -27,3 +27,7 @@ prt(io::IO, xs...) = begin
         unlock(io)
     end
 end
+
+import Base.eachline
+
+eachline(f::Function, x) = (f(x) for x in eachline(x))
