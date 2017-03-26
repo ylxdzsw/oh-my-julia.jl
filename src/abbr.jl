@@ -1,4 +1,4 @@
-export ∞, Bytes, Byte, u8, u16, u32, u64, i32, i64, f32, f64
+export ∞, AbstractBytes, Bytes, Byte, u8, u16, u32, u64, i32, i64, f32, f64
 
 const ∞ = Inf
 
