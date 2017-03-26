@@ -12,5 +12,6 @@ include("list.jl")
 include("macro.jl")
 include("operator.jl")
 include("other.jl")
+include("pointer.jl")
 
 end
