@@ -1,6 +1,6 @@
 export Lock, acquire, release
 
-type Lock{T}
+mutable struct Lock{T}
     avaliable::Bool
     condition::Condition
     data::T

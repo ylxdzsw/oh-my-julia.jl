@@ -2,7 +2,7 @@ export @defer, @force
 
 import Base.fetch
 
-type Thunk
+struct Thunk
     f::Function
 end
 
@@ -17,7 +17,7 @@ macro force(ex)
 end
 
 function fetch(thunk::Thunk)
-    while isa(thunk, Thunk)
+    while thunk isa Thunk
         thunk = thunk()
     end
     thunk

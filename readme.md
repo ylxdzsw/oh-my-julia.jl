@@ -7,7 +7,7 @@ Oh-My-Julia
 Pkg.clone("https://github.com/ylxdzsw/oh-my-julia.jl","OhMyJulia")
 ```
 
-You can put following code into your `~/.juliarc.jl` to have it load automatically.
+You can put following code into your `~/.juliarc.jl` to load it automatically.
 
 ```
 atreplinit() do repl

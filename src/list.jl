@@ -1,8 +1,5 @@
-import Base: map, map!, min, max, conv
+import Base: min, max, conv
 export Δ, groupby, level_to_edge
-
-map(f::Base.Callable, g::Base.Callable, x) = map(f, map(g, x))
-map!(f::Base.Callable, g::Base.Callable, x) = map!(f, map(g, x))
 
 Δ{T}(x::Vector{T}) = Tuple{T,T}[(x[i+1],x[i]) for i in 1:length(x)-1]
 Δ(f::Function, x::Vector) = [f(x[i+1],x[i]) for i in 1:length(x)-1]
