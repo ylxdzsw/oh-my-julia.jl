@@ -5,7 +5,6 @@ module OhMyJulia
 include("alias.jl")
 include("defer.jl")
 include("foreign.jl")
-include("fs.jl")
 include("io.jl")
 include("list.jl")
 include("macro.jl")
