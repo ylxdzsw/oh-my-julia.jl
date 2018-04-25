@@ -84,3 +84,17 @@ function conv(f::Function, A::Vector; kernel::Int=2, stride::Int=1, ret_t::Type=
     end
     A′
 end
+
+import Base: start, next, done, iteratorsize, eltype
+
+struct IterUntil{T}
+    f::Base.Callable
+end
+
+IterUntil(f) = IterUntil{Any}(f)
+
+start(iu::IterUntil) = iu.f()
+next(iu::IterUntil, x::Nullable) = get(x), iu.f()
+done(iu::IterUntil, x::Nullable) = isnull(x)
+iteratorsize(::Type{IterUntil}) = Base.SizeUnknown
+eltype(::Type{IterUntil{T}}) where T = T

@@ -9,7 +9,7 @@ end
 
 export counter
 
-const counter = ((c) -> () -> println(c += 1))(0)
+const counter = ((c) -> () -> c += 1)(0)
 
 export @rel_str
 
