@@ -7,4 +7,8 @@ import Base.*
 @eval $(:(=)) = ==
 @eval export $(:(=))
 
-*{T<:Integer}(x::Integer, t::Type{T}) = t(x)
+*(x::Integer, ::Type{T}) where {T <: Primitives} = T(x)
+
+import Base.ctranspose
+
+ctranspose(x::Primitives) = ntoh(x)

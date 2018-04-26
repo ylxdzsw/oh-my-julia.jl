@@ -14,3 +14,9 @@ const i32 = Int32
 const i64 = Int64
 const f32 = Float32
 const f64 = Float64
+
+const Primitives = Union{
+    UInt8, UInt16, UInt32, UInt64, UInt128,
+    Int8, Int16, Int32, Int64, Int128,
+    Float16, Float32, Float64
+}
