@@ -2,7 +2,7 @@ export ++
 
 import Base.*
 
-++(a, b) = [a; b]
+++ = vcat
 
 @eval $(:(=)) = ==
 @eval export $(:(=))
