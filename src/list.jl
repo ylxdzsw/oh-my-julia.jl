@@ -98,3 +98,21 @@ next(iu::IterUntil, x::Nullable) = get(x), iu.f()
 done(iu::IterUntil, x::Nullable) = isnull(x)
 iteratorsize(::Type{IterUntil}) = Base.SizeUnknown
 eltype(::Type{IterUntil{T}}) where T = T
+
+export try_collect
+
+function try_collect(::Type{T}, itr, f=rethrow) where T
+    a = Vector{T}()
+    i = start(itr)
+    while !done(itr, i)
+        try
+            d, i = next(itr, i)
+            push!(a, d)
+        catch e
+            f(e)
+        end
+    end
+    a
+end
+
+try_collect(itr, f=rethrow) = try_collect(eltype(itr), itr, f)
