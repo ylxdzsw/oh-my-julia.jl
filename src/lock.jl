@@ -1,33 +1,25 @@
-export Lock, acquire, release
+import Base: getindex, setindex!
 
+export Lock, waitfor
+
+"A locked data that can be `waitfor` by other tasks"
 mutable struct Lock{T}
-    avaliable::Bool
     condition::Condition
     data::T
-
-    Lock(x::T) = new(true, Condition(), x)
 end
 
-Lock{T}(x::T) = Lock{T}(x)
+Lock(x::T) where T = Lock{T}(Condition(), x)
 
-function acquire(l::Lock)
-    while !l.avaliable
-        wait(l.condition)
-    end
-    l.avaliable = false
-    l.data
+waitfor(f, l::Lock) = while !f(l.data)
+    wait(l.condition)
 end
 
-function release(l::Lock)
-    l.avaliable = true
-    notify(l.condition, all=false)
-end
+getindex(l::Lock, args...) = l.data
 
-function acquire(f, l::Lock)
-    data = acquire(l)
-    try
-        f(data)
-    finally
-        release(l)
-    end
+function setindex!(l::Lock, v, opt::Symbol=:secret)
+    l.data = v
+    opt == :secret ? nothing :
+    opt == :all ? notify(l.condition) :
+    opt == :one ? notify(l.condition, all=false) :
+    ArgumentError("unknown option $opt")
 end
