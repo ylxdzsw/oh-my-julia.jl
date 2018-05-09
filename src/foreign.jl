@@ -1,4 +1,4 @@
-export car, cdr, cadr, cons
+export car, cdr, cadr, cons,
        nrow, ncol, void
 
 @inline car(x::ANY)   = x[1]
