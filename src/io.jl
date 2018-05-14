@@ -8,7 +8,7 @@ end
 
 <<(x::IO, y) = (print(x, y); x)
 <<(x::IO, y::Bytes) = (write(x, y); x)
-<<(x::IO, y::asbytes) = (write(x, y); x)
+<<(x::IO, y::asbytes) = (write(x, y.data); x)
 <<(x::IO, f::Function) = (f(x); x)
 
 >>(x::IO, y) = read(x, y)
