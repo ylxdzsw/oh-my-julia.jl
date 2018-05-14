@@ -1,9 +1,21 @@
 import Base: <<, >>, >>>
 
+export asbytes, asstring
+
+struct asbytes{T}
+    data::T
+end
+
+struct asstring{T}
+    data::T
+end
+
 <<(x::IO, y) = (print(x, y); x)
 <<(x::IO, y::Byte) = (write(x, y); x)
 <<(x::IO, y::Bytes) = (write(x, y); x)
 <<(x::IO, f::Function) = (f(x); x)
+<<(x::IO, y::asbytes) = (write(x, y); x)
+<<(x::IO, y::asstring) = (print(x, y); x)
 
 >>(x::IO, y) = read(x, y)
 >>(x::IO, f::Function) = f(x)
