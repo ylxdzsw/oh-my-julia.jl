@@ -10,6 +10,7 @@ const u8  = UInt8
 const u16 = UInt16
 const u32 = UInt32
 const u64 = UInt64
+const u128 = UInt128
 const i32 = Int32
 const i64 = Int64
 const f32 = Float32
