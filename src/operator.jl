@@ -12,3 +12,7 @@ import Base.*
 import Base.ctranspose
 
 ctranspose(x::Primitives) = ntoh(x)
+
+import Base.!
+
+!(x::Nullable) = get(x)
