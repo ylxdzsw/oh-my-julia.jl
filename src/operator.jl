@@ -11,7 +11,7 @@ import Base.*
 
 import Base.ctranspose
 
-ctranspose(x::Primitives) = ntoh(x)
+# ctranspose(x::Primitives) = ntoh(x)
 
 import Base.!
 
