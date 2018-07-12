@@ -9,3 +9,24 @@ end
 macro when(exp)
     :( !$(esc(exp)) && continue )
 end
+
+macro retry(times, exp)
+    quote
+        let i = 0
+            @label retry
+            try
+                $exp
+            catch
+                i >= $times && rethrow()
+
+                i += 1
+                yield()
+                @goto retry
+            end
+        end
+    end
+end
+
+macro retry(exp)
+    :(@retry 3 $exp)
+end
