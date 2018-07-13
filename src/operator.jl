@@ -21,4 +21,5 @@ import Base.!
 
 import Base.in
 
-in(x::AbstractString, y::AbstractString) = contains(y, x)
+# hack to circumvent a fucking warning
+in(x::Union{subtypes(AbstractString)...}, y::Union{subtypes(AbstractString)...}) = contains(y, x)
