@@ -18,3 +18,7 @@ import Base.ctranspose
 import Base.!
 
 !(x::Nullable) = get(x)
+
+import Base.in
+
+in(x::AbstractString, y::AbstractString) = contains(y, x)
