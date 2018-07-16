@@ -116,3 +116,8 @@ function try_collect(::Type{T}, itr, f=rethrow) where T
 end
 
 try_collect(itr, f=rethrow) = try_collect(eltype(itr), itr, f)
+
+import Base: <<, >>, >>>
+(<<)(a::AbstractVector, b) = push!(a, b)
+(>>)(a, b::AbstractVector) = unshift!(b, a)
+(>>>)(a, b::AbstractVector) = push!(b, a)
