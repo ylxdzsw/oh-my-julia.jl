@@ -1,4 +1,4 @@
-export @i_str, @when
+export @i_str, @when, @nogc
 
 macro i_str(ind)
     ex = parse("x[$ind]")
@@ -29,4 +29,15 @@ end
 
 macro retry(exp)
     :(@retry 3 $exp)
+end
+
+macro nogc(ex)
+    quote
+        try
+            gc_disable()
+            $(esc(ex))
+        finally
+            gc_enable()
+        end
+    end
 end

@@ -11,6 +11,10 @@ import Base.*
 
 *(x::Type...) = Tuple{x...} # cannot use × since it is not associative
 
+import Base.|
+
+|(x::Type, y::Type) = Union{x, y}
+
 import Base.ctranspose
 
 # ctranspose(x::Primitives) = ntoh(x)
