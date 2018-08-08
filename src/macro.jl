@@ -1,9 +1,21 @@
 export @i_str, @when, @nogc
 
-macro i_str(ind)
-    ex = parse("x[$ind]")
+"""
+i"39": x -> x[39]
+i"f"q: x -> x["f"]
+i".f": x -> x.f
+"""
+macro i_str(ind, flag="")
+    ex = if flag == "q"
+        parse("x[\"$ind\"]")
+    elseif car(ind) == '.'
+        parse("x$ind")
+    else
+        parse("x[$ind]")
+    end
+    ex.args[1] = gensym()
     ex.args[2] = esc(ex.args[2])
-    Expr(:->, :x, ex)
+    Expr(:->, ex.args[1], ex)
 end
 
 macro when(exp)
