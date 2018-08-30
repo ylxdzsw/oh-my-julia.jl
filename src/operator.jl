@@ -18,10 +18,3 @@ import Base.|
 # import Base.ctranspose
 
 # ctranspose(x::Primitives) = ntoh(x)
-
-using InteractiveUtils
-
-import Base.in
-
-# hack to circumvent a fucking warning
-in(x::Union{subtypes(AbstractString)...}, y::Union{subtypes(AbstractString)...}) = occursin(x, y)
