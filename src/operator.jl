@@ -15,15 +15,13 @@ import Base.|
 
 |(x::Type, y::Type) = Union{x, y}
 
-import Base.ctranspose
+# import Base.ctranspose
 
 # ctranspose(x::Primitives) = ntoh(x)
 
-import Base.!
-
-!(x::Nullable) = get(x)
+using InteractiveUtils
 
 import Base.in
 
 # hack to circumvent a fucking warning
-in(x::Union{subtypes(AbstractString)...}, y::Union{subtypes(AbstractString)...}) = contains(y, x)
+in(x::Union{subtypes(AbstractString)...}, y::Union{subtypes(AbstractString)...}) = occursin(x, y)

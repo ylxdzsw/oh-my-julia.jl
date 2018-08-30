@@ -19,7 +19,7 @@ end
 
 export prt
 
-prt(xs...) = prt(STDOUT, xs...)
+prt(xs...) = prt(stdout, xs...)
 prt(io::IO, xs...) = begin
     lock(io)
     try
@@ -38,6 +38,6 @@ import Base.eachline
 
 eachline(f::Function, x) = (f(x) for x in eachline(x))
 
-<<(x::typeof(log), y) = println(STDERR, "LOG: ", Dates.format(now(), "HH:MM:SS "), y)
+<<(x::typeof(log), y) = println(stderr, "LOG: ", Dates.format(now(), "HH:MM:SS "), y)
 <<(x::typeof(info), y) = info(Dates.format(now(), "HH:MM:SS "), y)
 <<(x::typeof(warn), y) = warn(Dates.format(now(), "HH:MM:SS "), y)
