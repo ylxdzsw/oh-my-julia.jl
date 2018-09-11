@@ -1,3 +1,5 @@
+import Meta.parse
+
 export @i_str, @when, @nogc
 
 """
