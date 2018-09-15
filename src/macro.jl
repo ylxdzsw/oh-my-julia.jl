@@ -1,5 +1,3 @@
-import Meta.parse
-
 export @i_str, @when, @nogc
 
 """
@@ -9,11 +7,11 @@ i".f": x -> x.f
 """
 macro i_str(ind, flag="")
     ex = if flag == "q"
-        parse("x[\"$ind\"]")
+        Meta.parse("x[\"$ind\"]")
     elseif car(ind) == '.'
-        parse("x$ind")
+        Meta.parse("x$ind")
     else
-        parse("x[$ind]")
+        Meta.parse("x[$ind]")
     end
     ex.args[1] = gensym()
     ex.args[2] = esc(ex.args[2])
