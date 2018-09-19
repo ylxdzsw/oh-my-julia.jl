@@ -1,4 +1,4 @@
-export @i_str, @when, @nogc
+export @i_str, @when, @retry, @nogc, @fill
 
 """
 i"39": x -> x[39]
@@ -52,4 +52,10 @@ macro nogc(ex)
             gc_enable()
         end
     end
+end
+
+macro fill(ex, dims...)
+    Expr(:comprehension, Expr(:generator,
+        ex, (Expr(:(=), gensym(), :(1:$x)) for x in dims)...
+    ))
 end
