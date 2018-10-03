@@ -57,5 +57,5 @@ end
 macro fill(ex, dims...)
     Expr(:comprehension, Expr(:generator,
         ex, (Expr(:(=), gensym(), :(1:$x)) for x in dims)...
-    ))
+    )) |> esc
 end
