@@ -37,7 +37,3 @@ end
 import Base.eachline
 
 eachline(f::Function, x) = (f(x) for x in eachline(x))
-
-<<(x::typeof(log), y) = println(stderr, "LOG: ", Dates.format(now(), "HH:MM:SS "), y)
-<<(x::typeof(info), y) = info(Dates.format(now(), "HH:MM:SS "), y)
-<<(x::typeof(warn), y) = warn(Dates.format(now(), "HH:MM:SS "), y)
