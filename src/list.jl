@@ -79,7 +79,7 @@ end
 export conv
 
 function conv(f::Function, A::Vector; kernel::Int=2, stride::Int=1, ret_t::Type=Any)
-    A′ = Vector{ret_t}((length(A)-kernel)÷stride+1)
+    A′ = Vector{ret_t}(undef, (length(A)-kernel)÷stride+1)
     for i in eachindex(A′)
         offset = (i - 1) * stride
         A′[i]  = f(A[offset+1:offset+kernel]...)
